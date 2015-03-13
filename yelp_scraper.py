@@ -6,6 +6,10 @@ import csv
 kapnos_url = "http://www.yelp.com/biz/kapnos-taverna-arlington?sort_by=date_desc"
 pollo_url = "http://www.yelp.com/biz/el-pollo-rico-arlington?sort_by=date_desc"
 bonchon_url = "http://www.yelp.com/biz/bonchon-arlington-arlington?sort_by=date_desc"
+uncle_julios_url = "http://www.yelp.com/biz/uncle-julios-arlington-2?sort_by=date_desc"
+galaxy_hut_url = "http://www.yelp.com/biz/galaxy-hut-arlington?sort_by=date_desc"
+
+
 max_iters = 100
 revs_per_page = 40
 
@@ -31,8 +35,9 @@ def scrape_reviews(url):
             break
         reviews = reviews + cur_reviews
         i = i + 1
-    #extract text and ascii-encode, ignoring errors, for each review
     print "total reviews: ", len(reviews)
+
+    #extract text and ascii-encode, ignoring errors, for each review
     return [r.text.encode('ascii', 'ignore') for r in reviews]
 
 def save_to_csv(texts, filename):
@@ -62,5 +67,15 @@ def read_from_csv(filename):
 # print pollo_revs[0]
 # print pollo_revs[len(pollo_revs)-1]
 
-bonchon_revs = scrape_reviews(bonchon_url)
-save_to_csv(bonchon_revs, "bonchon_revs.csv")
+# bonchon_revs = scrape_reviews(bonchon_url)
+# save_to_csv(bonchon_revs, "bonchon_revs.csv")
+
+# bonchon_revs = read_from_csv("bonchon_revs.csv")
+# print bonchon_revs[0]
+# print bonchon_revs[len(bonchon_revs)-1]
+
+# revs = scrape_reviews(uncle_julios_url)
+# save_to_csv(revs, "uncle_julios.csv")
+
+revs = scrape_reviews(galaxy_hut_url)
+save_to_csv(revs, "galaxy_hut.csv")

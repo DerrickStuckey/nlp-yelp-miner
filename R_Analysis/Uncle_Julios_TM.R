@@ -46,5 +46,5 @@ k_means_fit <- kmeans(dtm_matrix, 5) # 5 cluster solution
 # get cluster means 
 aggregate(dtm_matrix,by=list(k_means_fit$cluster),FUN=mean)
 # append cluster assignment
-mydata <- data.frame(mydata, fit$cluster)
-
+clustered_docs <- data.frame("cluster"=k_means_fit$cluster, uncle_julios)
+View(clustered_docs)

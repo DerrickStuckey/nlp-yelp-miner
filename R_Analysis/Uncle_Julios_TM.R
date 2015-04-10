@@ -57,10 +57,25 @@ plot(term_hclust_fit,main="Term Hierarchical Clustering")
 
 ## attempt k-means clustering
 # K-Means Cluster Analysis
-k_means_fit <- kmeans(dtm_matrix, 5) # 5 cluster solution
+k <- 5
+k_means_fit <- kmeans(dtm_matrix, k) # 5 cluster solution
 # append cluster assignment
 clustered_docs <- data.frame("cluster"=k_means_fit$cluster, uncle_julios)
 View(clustered_docs)
 
-# get cluster means 
+# get cluster means
 cluster_means <- aggregate(dtm_matrix,by=list(k_means_fit$cluster),FUN=mean)
+# for each cluster, find most common terms
+common_terms_1 <- sort(cluster_means[1,],decreasing=TRUE)[1:10]
+# for each cluster, find representative review
+cluster_means_t <- t(cluster_means)
+names(cluster_means_t) <- lapply(seq(1,5),
+                                 function(x) {
+                                   paste("Group",as.character(x),sep=" ")
+                                   })
+cluster_means_t <- cluster_means_t[2:nrow(cluster_means_t),]
+common_terms_df <- lapply(cluster_means_t,
+                          FUN=function(x) {
+                            sort(x,decreasing=TRUE)[1:10]
+                          })
+#need to add row.names(common_terms_df)

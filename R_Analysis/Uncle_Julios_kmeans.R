@@ -19,15 +19,17 @@ clustered_docs <- data.frame("cluster"=k_means_fit$cluster, uncle_julios)
 cluster_means <- k_means_fit$centers
 
 #initialize data frame w/ group 1
-group_terms_1 <- names(sort(cluster_means[1,],decreasing=TRUE)[1:10])
-group_name_1 <- "Group 1"
-top_terms <- data.frame(group_name_1=group_terms_1)
+group_terms <- names(sort(cluster_means[1,],decreasing=TRUE)[1:10])
+top_terms <- data.frame(group_terms)
 
 #add each other group's top terms to the data frame
 for (j in 2:k) {
   group_terms <- names(sort(cluster_means[j,],decreasing=TRUE)[1:10])
-  group_name <- paste("Group",as.character(j),sep=" ")
   top_terms <- cbind(top_terms,group_name=group_terms)
 }
+names(top_terms) <- lapply(seq(1:k), function(x) {
+  paste("Cluster",x,sep=" ")
+})
 
 View(top_terms)
+

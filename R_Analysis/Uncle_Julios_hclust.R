@@ -47,11 +47,17 @@ plot(cut(fourth_cut, h=800)$lower[[2]], main= "Branch 2 of branch 4")
 plot(cut(fourth_cut, h=800)$lower[[3]], main= "Branch 3 of branch 4")
 
 first_cut <- cut(hcd, h = 2000)$lower[[1]]
-plot(cut(first_cut, h=200)$lower[[1]], main= "Branch 1 of branch 4")
-plot(cut(first_cut, h=200)$lower[[2]], main= "Branch 2 of branch 4")
-plot(cut(first_cut, h=200)$lower[[3]], main= "Branch 3 of branch 4")
-plot(cut(first_cut, h=200)$lower[[4]], main= "Branch 4 of branch 4")
-plot(cut(first_cut, h=200)$lower[[5]], main= "Branch 5 of branch 4")
-plot(cut(first_cut, h=200)$lower[[6]], main= "Branch 6 of branch 4")
+plot(cut(first_cut, h=200)$lower[[1]], main= "Branch 1 of branch 1")
+plot(cut(first_cut, h=200)$lower[[2]], main= "Branch 2 of branch 1")
+plot(cut(first_cut, h=200)$lower[[3]], main= "Branch 3 of branch 1")
+plot(cut(first_cut, h=200)$lower[[4]], main= "Branch 4 of branch 1")
+plot(cut(first_cut, h=200)$lower[[5]], main= "Branch 5 of branch 1")
+plot(cut(first_cut, h=200)$lower[[6]], main= "Branch 6 of branch 1")
 
+one_four_cut <- cut(first_cut, h=200)$lower[[4]]
+plot(cut(one_four_cut, h=140)$lower[[1]], main= "Branch 1 -> 4 -> 1")
+plot(cut(one_four_cut, h=140)$lower[[2]], main= "Branch 1 -> 4 -> 2")
+plot(cut(one_four_cut, h=140)$lower[[3]], main= "Branch 1 -> 4 -> 3")
+plot(cut(one_four_cut, h=140)$lower[[4]], main= "Branch 1 -> 4 -> 4")
+#plot(cut(one_four_cut, h=140)$lower[[5]], main= "Branch 1 -> 4 -> 5")
 
